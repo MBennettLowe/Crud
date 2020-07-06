@@ -12,7 +12,6 @@ var MongoClient = require('mongodb').MongoClient,format = require('util').format
 const assert = require('assert'); // still trying to research what this requirement does!!!
 
 var bodyParser = require('body-parser');// bodyParser is simply used to get JSON output from the form.
-var db; // initialize db
 const ejsLint = require('ejs-lint');
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -36,7 +35,7 @@ const url = 'mongodb://localhost:27017';
 // *******Connect to MongoDB************
 // https://flaviocopes.com/node-mongodb/
 
-//var db; 
+var db; // initialize db
 MongoClient.connect(url, function(err, client) {
   database = db;
   assert.equal(null, err);
@@ -66,76 +65,24 @@ const baseURL = "http://localhost:4000/"
 app.get('/', function(req, res) {
 
 
-  // Get the event list
-
-// Making queries with find()
-// Collections can be queried with find.
-
-// collection.find(query[[[, fields], options], callback]);
-// Where
-
-// query - is a query object, defining the conditions the documents need to apply
-// fields - indicates which fields should be included in the response (default is all)
-// options - defines extra logic (sorting options, paging etc.)
-// raw - driver returns documents as bson binary Buffer objects, default:false
-// callback has two parameters - an error object (if an error occured) and a cursor object.
-
 // function getData() {
 //   db.collection("e_events"),find({}, {_id:0}).sort({e_start_date:1})(function (err, document) {
 //   if (err) throw err;
+// console.log(err);
 //   // do something
+// console.log("Success");
 //   )};
 
 
-// var dataset = [
-//   {// doint more stuff here.
-//   }
-// ];
-// });
-
-// mongodb.connect() is called mongodb.connect() is called asynchronously
-// http.get("/crud", function(req, res) {
-//   MongoClient.connect(url_monitor, function (err, db) {
-//     assert.equal(null, err);
-//   });
-// });
-
   //db.collection.find({}, {_id:0}).sort({e_start_date:1})(function (err, document) {
-  //   res.render('pages/index');
-  // });
-
-  res.render('pages/index', {
-    siteTitle : siteTitle,
-    pageTitle : "Event list",
-    items : '' 
-    
+    res.render("test",{
+      siteTitle : siteTitle,
+      pageTitle : "Event list",
+      items : '' 
+    });
   });
-});
-
-// con.query("SELECT * FROM e_events ORDER BY e_start_date DESC", function (err, res) {
-//   res.render('pages/index', {
-//     siteTitle : siteTitle,
-//     pageTitle : "Event list",
-//     items : result
-//   });
-// });
-// });
 
 
-
-// Creating a SQL Database Connection
-// To create a connection in SQL
-// Localhost - When in production mode change this to your host
-// User - User name of the database
-// Password - Database password
-// Database - Database is the name of the database
-
-// const con = mysql.createConnection({ 
-    // host: "localhost",
-    // user: "root",
-    // password: "",
-    // database: "mydb"
-//});
 
 // Creating Server
 // initializes request listener
